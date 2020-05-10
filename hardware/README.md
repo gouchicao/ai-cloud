@@ -13,6 +13,12 @@
 > 用法：bash make.sh hostname [ip-suffix]
 >      例：bash make.sh rpi1 101
 
+* 确定您要写入的设备。
+``` bash
+查看设备 lsblk
+修改make.sh文件中的DEV变量。
+```
+
 * 写入[Raspbian Buster Lite](http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2020-02-14/2020-02-13-raspbian-buster-lite.zip)镜像
 ``` txt
 下载Raspbian Buster Lite镜像保存到raspbian目录下。
