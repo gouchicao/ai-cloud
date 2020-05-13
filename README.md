@@ -3,6 +3,6 @@
 
 ## [硬件](hardware)
 
-## [系统](system))
+## [系统](system)
 
 ## [运维](operation)
