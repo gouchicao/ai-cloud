@@ -1,5 +1,9 @@
 # Flash
 
+## Flash OS
+* [Raspbian](raspbian)
+* [Jetson Nano Developer Kit](https://developer.nvidia.com/embedded/jetpack)
+
 ## Flash OS 工具
 ### [Etcher](https://www.balena.io/etcher/)
 * 添加安装源
@@ -22,5 +26,3 @@ sudo apt-get install balena-etcher-electron
 sudo apt-get remove etcher-electron
 sudo rm /etc/apt/sources.list.d/etcher.list
 ```
-
-## [Flash Raspbian](raspbian)
