@@ -1,12 +1,14 @@
-# Flash Raspbian
+# Flash [Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
 
 ## 下载树莓派系统
-* [Raspbian Buster Lite](http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2020-02-14/2020-02-13-raspbian-buster-lite.zip)
+* [Raspbian Buster Lite](https://www.raspberrypi.org/downloads/raspbian/)
 
-    默认用户：pi和密码：baspberry
+    默认用户：pi
+    
+    密码：baspberry
 
 ## 手动
-### Flash Raspbian to SD
+### Flash Raspbian to SD卡
 ```
 打开Etcher程序。选择Raspbian Lite镜像，插入要烧入的SD卡，Etcher程序会自动检测到并自动选择，单击Flash!。
 ```
@@ -39,7 +41,7 @@ static domain_name_servers=192.168.3.1 8.8.8.8
 ```
 
 ### SSH 使用密匙登录
-运行命令：```bash ssh-keygen -t rsa```，在~/.ssh/目录下生成私匙id_rsa和公匙id_rsa.pub两个文件。
+运行命令：```ssh-keygen -t rsa```，在~/.ssh/目录下生成私匙id_rsa和公匙id_rsa.pub两个文件。
 ```bash
 ssh-keygen -t rsa
 Generating public/private rsa key pair.
@@ -71,7 +73,7 @@ The key's randomart image is:
 ```bash
 sudo timedatectl set-timezone Asia/Shanghai
 
-#查看刚设置的时区
+#查看系统的时区
 ll /etc/localtime
 ```
 
@@ -103,3 +105,6 @@ static domain_name_servers=xxx.xxx.xxx.1 8.8.8.8
 
 ### 修改您的公匙路径。
     修改flash.sh文件中的YOUR_PUBLIC_KEY变量。
+
+## 参考资料
+* [Setting timezone non-interactively](https://raspberrypi.stackexchange.com/questions/87164/setting-timezone-non-interactively)
