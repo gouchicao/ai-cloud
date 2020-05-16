@@ -13,7 +13,7 @@
     > ![](images/jetson-nano.jpeg)
 
 ## 附件
-* Micro SD卡
+* Micro SD卡（每个主机需要一张）
 * Raspberry Pi 4（树莓派4）电源适配器   5V4A
 * Jetson Nano电源适配器   5V3A
 * Micro HDMI 转 HDMI 高清线（Raspberry Pi 4）
