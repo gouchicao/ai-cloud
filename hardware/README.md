@@ -1,9 +1,9 @@
 # 硬件
 
-| 主机                                                                                 | 内存   | TF卡容量 | 数量 |
-| :---                                                                                | ----:  | ----:  | ---:|
-| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)      | 4G     | 32G    | 3   |
-| [Jetson Nano](https://developer.nvidia.com/embedded/jetson-nano)                    | 4G     | 64G    | 1   |
+| 主机                                                                                 | 内存   | Micro SD卡容量 | 数量 |
+| :---                                                                                | ----:  | ----:         | ---:|
+| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)      | 4G     | 32G           | 3   |
+| [Jetson Nano](https://developer.nvidia.com/embedded/jetson-nano)                    | 4G     | 64G           | 1   |
 
 ## 主机
 * Raspberry Pi 4（树莓派4）
@@ -23,3 +23,6 @@
 * 铜柱（可以用来将多个树莓派4安装到一起）
 * 插排
 
+## 参考资料
+* [Raspberry Pi](https://www.raspberrypi.org/)
+* [Jetson Hardware](https://developer.nvidia.com/embedded/develop/hardware)
