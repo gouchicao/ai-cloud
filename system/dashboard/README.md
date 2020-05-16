@@ -48,6 +48,8 @@ sudo kubectl apply -f dashboard.admin-user.yml -f dashboard.admin-user-role.yml
 ```bash
 sudo kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 ```
+输入Token信息登录。
+
 ![](login-token.png)
 
 ### 命令行代理
