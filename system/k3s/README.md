@@ -125,63 +125,6 @@ rpi2    Ready    <none>   38h   v1.17.4+k3s1
 rpi1    Ready    <none>   38h   v1.17.4+k3s1
 ```
 
-## Dashboard(Web UI)
-### 安装
-```bash
-sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
-```
-
-### RBAC配置
-为了保护您的集群数据，默认情况下，Dashboard 会使用最少的 RBAC 配置进行部署。 当前，Dashboard 仅支持使用 Bearer 令牌登录。 
-* 编辑文件：dashboard.admin-user.yml
-```bash
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
-```
-
-* 编辑文件：dashboard.admin-user-role.yml
-```bash
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kubernetes-dashboard
-```
-
-* 创建RBAC
-```bash
-sudo kubectl apply -f dashboard.admin-user.yml -f dashboard.admin-user-role.yml
-```
-
-* 获得Token
-```bash
-sudo kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
-```
-
-* 访问Dashboard
-```bash
-http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
-```
-
-* 远程访问Dashboard（创建ssh隧道）
-```bash
-# -L 8001 本机的端口号，可以是任意。
-ssh -L 8001:127.0.0.1:8001 -N -f -l <username> <k8s master hostname or ip> 
-```
-
-* 参考资料
-    * [Is accessing kubernetes dashboard remotely possible?](https://www.edureka.co/community/31282/is-accessing-kubernetes-dashboard-remotely-possible)
-
 ## 安装[helm](https://github.com/openfaas/faas-netes/blob/master/HELM.md)
 ```bash
 curl -sSLf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
