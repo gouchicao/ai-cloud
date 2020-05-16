@@ -4,4 +4,5 @@
 * [Flash](flash)
 
 ## 集群搭建
-* [k3s](k3s)
+* [K3S](k3s)
+* Kubernetes

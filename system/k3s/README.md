@@ -173,9 +173,54 @@ sudo kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^to
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
 
-* 远程访问Dashboard
+* 远程访问Dashboard（创建ssh隧道）
 ```bash
+# -L 8001 本机的端口号，可以是任意。
 ssh -L 8001:127.0.0.1:8001 -N -f -l <username> <k8s master hostname or ip> 
+```
+
+* 参考资料
+    * [Is accessing kubernetes dashboard remotely possible?](https://www.edureka.co/community/31282/is-accessing-kubernetes-dashboard-remotely-possible)
+
+## 安装[helm](https://github.com/openfaas/faas-netes/blob/master/HELM.md)
+```bash
+curl -sSLf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+```
+
+## OpenFaas
+### 安装
+* 安装faas-cli
+```bash
+curl -sL https://cli.openfaas.com | sudo sh
+```
+
+* 安装arkade
+```bash
+curl -SLsf https://dl.get-arkade.dev/ | sudo sh
+```
+
+* 安装OpenFaaS
+```bash
+sudo arkade install openfaas
+```
+
+* Kubernetes上启用OpenFaas
+    * [faas-netes](https://github.com/openfaas/faas-netes/blob/master/chart/openfaas/README.md)
+```bash
+git clone https://github.com/openfaas/faas-netes && cd faas-netes
+sudo kubectl apply -f ./namespaces.yml
+sudo kubectl apply -f ./yaml_armhf
+```
+
+### port-forward
+```bash
+sudo kubectl port-forward svc/gateway -n openfaas 31112:8080
+```
+浏览器访问：http://localhost:8080/
+
+### 卸载
+```bash
+sudo helm delete openfaas --namespace openfaas
 ```
 
 ## 在Raspbian Buster上启用旧版iptables
