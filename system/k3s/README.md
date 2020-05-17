@@ -1,4 +1,4 @@
-# [K3S 轻量级Kubernetes](https://k3s.io)
+# K3S 轻量级Kubernetes
 经过认证的Kubernetes发行版专为IoT和Edge计算而构建
 
 ## K3S安装命令
@@ -218,6 +218,7 @@ sudo reboot
 
 
 ## 参考资料
+* [K3S](https://k3s.io)
 * [K3s - Lightweight Kubernetes](https://rancher.com/docs/k3s/latest/en/)
 * [K3s - Quick-Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
 * [Install and Set Up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
