@@ -3,9 +3,13 @@
 ## 刷系统及初始设置
 * [Flash](flash)
 
-## 安装 [Kubernetes](https://kubernetes.io/zh/)
+## 系统软件
 * Kubernetes
-* [K3S](k3s)
+    * [K3S](k3s)
+* [OpenFaaS](openfaas)
 
-## 组件
+## 应用软件
 * [用户界面 Dashboard](dashboard)
+
+## 参考资料
+* [Kubernetes](https://kubernetes.io/zh/)

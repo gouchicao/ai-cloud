@@ -55,18 +55,20 @@ sudo kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^to
 ### 命令行代理
 这种方式只能在本机访问。
 
-命令行下运行
+命令行下运行，可以使用参数--port=number来指定端口。
 ```bash
 kubectl proxy
 ```
 
 浏览器输入地址 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 访问。
 
-远程访问Dashboard（创建ssh隧道）
+远程访问Dashboard（在本地创建ssh隧道）
 ```bash
 # -L 8001 本机的端口号，可以是任意。
 ssh -L 8001:127.0.0.1:8001 -N -f -l <username> <kubernetes master hostname or ip> 
 ```
+
+在您的本地浏览器输入地址 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 访问。
 
 ### NodePort
 这种方式只推荐在开发环境下单节点安装。
