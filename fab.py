@@ -1,6 +1,6 @@
 import sys
 
-from fabric2 import SerialGroup
+from fabric import SerialGroup
 
 
 hosts = [

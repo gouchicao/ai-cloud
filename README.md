@@ -24,7 +24,7 @@ C:\Windows\System32\drivers\etc\hosts
 
 ### 编辑系统的```hosts```文件，在后面增加下面的文本。
 ```txt
-# GitHub Start 
+# GitHub Start
 192.30.253.112    github.com
 192.30.253.119    gist.github.com
 151.101.184.133    assets-cdn.github.com
@@ -40,6 +40,6 @@ C:\Windows\System32\drivers\etc\hosts
 151.101.184.133    avatars5.githubusercontent.com
 151.101.184.133    avatars6.githubusercontent.com
 151.101.184.133    avatars7.githubusercontent.com
-151.101.184.133    avatars8.githubusercontent.com 
+151.101.184.133    avatars8.githubusercontent.com
 # GitHub End
 ```
