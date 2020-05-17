@@ -9,24 +9,24 @@
 
 
 ## 主机
-* Raspberry Pi 4（树莓派4）
+### Raspberry Pi 4（树莓派4）
 
 ![](images/raspberry-pi4.jpg)
 
-* Jetson Nano
+### Jetson Nano
 
 ![](images/jetson-nano.jpg)
 
 ## 主机尺寸
-* Raspberry Pi 4（树莓派4）
+### Raspberry Pi 4（树莓派4）
 
 ![](images/raspberry-pi-4-b-4g-computer-board-dime.jpg)
 
-* Jetson Nano A02
+### Jetson Nano A02
 
 ![](images/jetson-nano-a02-computer-board-dime.jpg)
 
-* Jetson Nano A02和B01对比
+### Jetson Nano A02和B01对比
 
 ![](images/jetson-nano-a02-b01-computer-board-dime.jpg)
 
