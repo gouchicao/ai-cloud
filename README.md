@@ -1,4 +1,4 @@
-# 狗吃草 Cloud
+# Cloud Lab
 ![](logo.jpg)
 
 ## [硬件](hardware)
