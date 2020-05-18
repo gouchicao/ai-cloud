@@ -32,6 +32,7 @@
 
 
 ## 附件
+* 千兆路由器
 * Micro SD卡（每个主机需要一张）
 * Raspberry Pi 4（树莓派4）电源适配器   5V3A
 * Jetson Nano电源适配器   5V4A
