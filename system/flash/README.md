@@ -1,6 +1,7 @@
 # Flash
 
 ## Flash OS
+* [x86](x86)
 * [Raspbian](raspbian)
 * [Jetson Nano Developer Kit](jetpack)
 
