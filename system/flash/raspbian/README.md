@@ -5,7 +5,7 @@
 
     默认用户：pi
     
-    密码：baspberry
+    密码：raspberry
 
 ## 手动
 ### Flash Raspbian to SD卡
@@ -26,8 +26,8 @@ cp wpa_supplicant.conf $BOOT/
 
 编辑 $BOOT/wpa_supplicant.conf 文件，修改ssid和psk为您的路由器信息。
 network={
-    ssid="Youku"
-    psk="1234567890"
+    ssid="AIOT"
+    psk="0123456789"
 }
 ```
 

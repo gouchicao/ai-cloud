@@ -2,7 +2,7 @@
 
 ## Flash OS
 * [Raspbian](raspbian)
-* [Jetson Nano Developer Kit](https://developer.nvidia.com/embedded/jetpack)
+* [Jetson Nano Developer Kit](jetpack)
 
 ## Flash OS 工具
 ### [Etcher](https://www.balena.io/etcher/)

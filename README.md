@@ -68,3 +68,6 @@ C:\Windows\System32\drivers\etc\hosts
 151.101.184.133    avatars8.githubusercontent.com
 # GitHub End
 ```
+
+## 参考资料
+* [Welcome to Fabric!](https://www.fabfile.org/)
