@@ -2,13 +2,13 @@
 ![](logo.jpg)
 
 ## [硬件](hardware)
-| 主机                                                                            | 内存   | 存储容量 | 适配器 | 散热片 | 高清接口  |　Wi-Fi<br>蓝牙 | 主机 | 用户 | 密码 |
-| :---                                                                           | ----:  | ----:   | ---: | ---: | ---:      | ---: | ---: | ---:| ---: |
+| 主机                                                                            | 内存   | 电源存储容量 | 适配器 | 散热片 | 高清接口  |　Wi-Fi<br>蓝牙 | 主机 | 用户 | 密码 |
+| :---                                                                           | ----:  | ----:     | ---: | ---: | ---:      | ---: | ---: | ---:| ---: |
 | 小主机 | 8G | 128G | 12V5A | 自带 | HDMI | 自带 | aiot | wjj | |
-| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) | 4G     | 32G     | 5V3A | 无   | Micro HDMI | 自带 | rpi1  | pi  | raspberry |
-| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) | 4G     | 32G     | 5V3A | 无   | Micro HDMI | 自带 | rpi2  | pi  | raspberry |
-| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) | 4G     | 32G     | 5V3A | 无   | Micro HDMI | 自带 | rpi3  | pi  | raspberry |
-| [Jetson Nano B01](https://developer.nvidia.com/embedded/jetson-nano)           | 4G     | 64G     | 5V4A | 自带 | HDMI       | 无   | nano1 | nano| jetson    |
+| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) | 4G     | 32G       | 5V3A | 无   | Micro HDMI | 自带 | rpi1  | pi  | raspberry |
+| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) | 4G     | 32G       | 5V3A | 无   | Micro HDMI | 自带 | rpi2  | pi  | raspberry |
+| [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) | 4G     | 32G       | 5V3A | 无   | Micro HDMI | 自带 | rpi3  | pi  | raspberry |
+| [Jetson Nano B01](https://developer.nvidia.com/embedded/jetson-nano)           | 4G     | 64G       | 5V4A | 自带 | HDMI       | 无   | nano1 | nano| jetson    |
 
 ## [系统](system)
 
