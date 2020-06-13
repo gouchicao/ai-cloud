@@ -2,7 +2,7 @@
 
 | 主机                                                                                 | 内存   | Micro SD卡容量 | 电源适配器 | 散热片 | 高清线             |　Wi-Fi和蓝牙 |
 | :---                                                                                | ----:  | ----:         | ---:     | ---:  | ---:              | ---:        |
-| 小主机　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 | 8G     | 128G          |          |       | HDMI 转 HDMI       | 自带        |
+| 小主机 | 8G     | 128G          |          |       | HDMI 转 HDMI       | 自带        |
 | [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)      | 4G     | 32G           | 5V3A     | 无    | Micro HDMI 转 HDMI | 自带        |
 | [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)      | 4G     | 32G           | 5V3A     | 无    | Micro HDMI 转 HDMI | 自带        |
 | [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)      | 4G     | 32G           | 5V3A     | 无    | Micro HDMI 转 HDMI | 自带        |
