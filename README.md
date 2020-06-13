@@ -2,7 +2,7 @@
 ![](logo.jpg)
 
 ## [硬件](hardware)
-| 主机                                                                                 | 内存   | 存储容量 | 电源适配器 | 散热片 | 高清线             |　Wi-Fi和蓝牙 | Hostname | Username | Password |
+| 主机                                                                                 | 内存   | 存储容量 | 电源适配器 | 散热片 | 高清线             |　Wi-Fi和蓝牙 | 主机 | 用户名 | 密码 |
 | :---                                                                                | ----:  | ----:   | ---:     | ---:  | ---:              | ---:        | ---:    | ---:     | ---:     |
 | 小主机 | 8G | 128G | 12V5A | 自带 | HDMI 转 HDMI | 自带 | aiot | wjj | |
 | [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)      | 4G     | 32G     | 5V3A     | 无    | Micro HDMI 转 HDMI | 自带        | rpi1    | pi      | raspberry |
