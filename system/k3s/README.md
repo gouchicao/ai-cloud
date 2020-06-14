@@ -266,3 +266,4 @@ sudo reboot
 * [K3s - Lightweight Kubernetes](https://rancher.com/docs/k3s/latest/en/)
 * [K3s - Quick-Start Guide](https://rancher.com/docs/k3s/latest/en/quick-start/)
 * [Install and Set Up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [Ubuntu安装程序报错：无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)](https://www.cnblogs.com/python-wen/p/11023944.html)
