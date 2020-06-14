@@ -1,23 +1,44 @@
 # K3S 轻量级Kubernetes
 经过认证的Kubernetes发行版专为IoT和Edge计算而构建
 
-## K3S安装命令
-k3s默认使用containerd容器，可以通过增加--docker来使用docker容器。
-```bash
-# 使用默认的containerd容器
-curl -sfL https://get.k3s.io | sh -
+## K3S如何工作
+![](https://k3s.io/images/how-it-works-k3s.svg)
 
-# 指定使用docker容器
+## 安装K3S
+> k3s默认使用containerd容器，可以通过增加--docker来使用docker容器。
+
+* 使用默认的containerd容器
+```bash
+curl -sfL https://get.k3s.io | sh -
+```
+
+* 指定使用docker容器
+```bash
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
 ```
 
+## 安装Docker
+```bash
+curl -sfL https://get.docker.com | sh -
+```
+
+## 卸载K3S
+* 卸载Server节点
+```bash
+/usr/local/bin/k3s-uninstall.sh
+```
+
+* 卸载Agent节点
+```bash
+/usr/local/bin/k3s-agent-uninstall.sh
+```
 
 ## 集群搭建
-我这里使用一台Jetson Nano作为Master，三台Raspberry Pi4作为Worker。
+> 我这里使用一台 ```小主机``` 作为 **Server**，三台 ```Raspberry Pi4``` 和一台 ```Jetson Nano``` 作为 **Agent**。
 
-### **Master节点**
+### **Server节点**
 ```bash
-# 在Jetson Nano中使用docker容器
+# 使用docker容器
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
 
 # 查看集群信息
@@ -31,10 +52,13 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 K100eafa2c79d548460322584a02c4b62708cf16bad0a4b33254b4c37a88e33d29d::server:972070ca134501f3afc130f3182cb213
 ```
 
-### **Worker节点**
+### **Agent节点**
 安装k3s代理。设置```K3S_URL```参数会使K3在Worker模式下运行，k3s代理将在k3s服务器上注册，侦听提供的URL。 用于```K3S_TOKEN```的值存储在服务器节点上的```/var/lib/rancher/k3s/server/node-token```中，参考上面。
 
 ```bash
+# 在Jetson Nano中使用Docker容器
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+
 # 在Raspberry Pi4中使用默认的containerd容器
 curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 
@@ -48,22 +72,24 @@ sudo systemctl status k3s-agent
 ```bash
 sudo kubectl get nodes
 
-NAME    STATUS   ROLES    AGE   VERSION
-nano1   Ready    master   39h   v1.17.4+k3s1
-rpi1    Ready    <none>   38h   v1.17.4+k3s1
-rpi2    Ready    <none>   38h   v1.17.4+k3s1
-rpi3    Ready    <none>   38h   v1.17.4+k3s1
+NAME    STATUS   ROLES    AGE    VERSION
+aiot    Ready    master   8m4s   v1.18.3+k3s1
+rpi2    Ready    <none>   27s    v1.18.3+k3s1
+rpi3    Ready    <none>   25s    v1.18.3+k3s1
+rpi1    Ready    <none>   27s    v1.18.3+k3s1
+nano1   Ready    <none>   15s    v1.18.3+k3s1
 ```
 
 * 节点详细信息
 ```bash
 sudo kubectl get nodes -o wide
 
-NAME    STATUS   ROLES    AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION   CONTAINER-RUNTIME
-nano1   Ready    master   4d13h   v1.17.4+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra    docker://19.3.8
-rpi1    Ready    <none>   4d12h   v1.17.4+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+     containerd://1.3.3-k3s2
-rpi2    Ready    <none>   4d12h   v1.17.4+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+     containerd://1.3.3-k3s2
-rpi3    Ready    <none>   4d12h   v1.17.4+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+     containerd://1.3.3-k3s2
+NAME    STATUS   ROLES    AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
+aiot    Ready    master   8m51s   v1.18.3+k3s1   192.168.3.110   <none>        Ubuntu 20.04 LTS                 5.4.0-37-generic   docker://19.3.11
+rpi2    Ready    <none>   74s     v1.18.3+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+rpi3    Ready    <none>   72s     v1.18.3+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+rpi1    Ready    <none>   74s     v1.18.3+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+nano1   Ready    <none>   62s     v1.18.3+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra      docker://19.3.8
 ```
 
 
@@ -90,24 +116,31 @@ rpi3    Ready    <none>   4d12h   v1.17.4+k3s1   192.168.3.103   <none>        R
 2. 将 ```k3s Master 节点```的配置文件复制到本地计算机。
     * 复制配置文件
     ```bash
-    sudo scp nano@192.168.3.100:/etc/rancher/k3s/k3s.yaml ~/.kube/config
+    sudo scp wjj@aiot:/etc/rancher/k3s/k3s.yaml ~/.kube/config
     ```
     * 修改配置文件的 ```Master IP```
     ```bash
-    sudo sed -ie s/127.0.0.1/192.168.3.100/g ~/.kube/config
+    sudo sed -ie s/127.0.0.1/192.168.3.110/g ~/.kube/config
     ```
 
 3. 现在试试在本地计算机的命令行下使用 ```kubectl```
     ```bash
     sudo kubectl get node -o wide
 
-    NAME    STATUS   ROLES    AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION   CONTAINER-RUNTIME
-    nano1   Ready    master   4d17h   v1.17.4+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra    docker://19.3.8
-    rpi2    Ready    <none>   4d16h   v1.17.4+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+     containerd://1.3.3-k3s2
-    rpi1    Ready    <none>   4d17h   v1.17.4+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+     containerd://1.3.3-k3s2
-    rpi3    Ready    <none>   4d16h   v1.17.4+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+     containerd://1.3.3-k3s2
+    NAME    STATUS   ROLES    AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
+    aiot    Ready    master   17m     v1.18.3+k3s1   192.168.3.110   <none>        Ubuntu 20.04 LTS                 5.4.0-37-generic   docker://19.3.11
+    rpi1    Ready    <none>   9m33s   v1.18.3+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+    rpi2    Ready    <none>   9m33s   v1.18.3+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+    rpi3    Ready    <none>   9m31s   v1.18.3+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+    nano1   Ready    <none>   9m21s   v1.18.3+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra      docker://19.3.8
     ```
 
+4. 不用管理员权限一样操作
+    ```bash
+    sudo chmod 644 ~/.kube/config
+
+    #试试不带sudo操作一下吧。
+    ```
 
 ## 集群配置检测
 ```bash
