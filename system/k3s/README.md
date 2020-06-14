@@ -268,3 +268,4 @@ sudo reboot
 * [Install and Set Up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [How to configure static IP address on Ubuntu 18.10 Cosmic Cuttlefish Linux](https://linuxconfig.org/how-to-configure-static-ip-address-on-ubuntu-18-10-cosmic-cuttlefish-linux)
 * [Ubuntu安装程序报错：无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)](https://www.cnblogs.com/python-wen/p/11023944.html)
+* [Mount USB in Ubuntu Server](http://azaleasays.com/2012/05/22/mount-usb-in-ubuntu-server/)
