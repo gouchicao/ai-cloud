@@ -23,6 +23,11 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
 /usr/local/bin/k3s-uninstall.sh
 ```
 
+* 卸载Agent节点
+```bash
+/usr/local/bin/k3s-agent-uninstall.sh
+```
+
 ## 安装Docker
 ```bash
 curl -sfL https://get.docker.com | sh -
@@ -37,11 +42,6 @@ sudo apt-get remove --auto-remove docker
 * 删除所有数据
 ```bash
 sudo rm -rf /var/lib/docker
-```
-
-* 卸载Agent节点
-```bash
-/usr/local/bin/k3s-agent-uninstall.sh
 ```
 
 ## 集群搭建
