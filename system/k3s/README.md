@@ -9,28 +9,28 @@
 
 * 使用默认的containerd容器
 ```bash
-curl -sfL https://get.k3s.io | sh -
+curl -fsSL https://get.k3s.io | sh -
 ```
 
 * 指定使用docker容器
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
+curl -fsSL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
 ```
 
 ## 卸载K3S
-* 卸载Server节点
+* 卸载Master节点
 ```bash
 /usr/local/bin/k3s-uninstall.sh
 ```
 
-* 卸载Agent节点
+* 卸载Worker节点
 ```bash
 /usr/local/bin/k3s-agent-uninstall.sh
 ```
 
 ## 安装Docker
 ```bash
-curl -sfL https://get.docker.com | sh -
+curl -fsSL https://get.docker.com | sh -
 ```
 
 ## 卸载Docker
@@ -45,12 +45,12 @@ sudo rm -rf /var/lib/docker
 ```
 
 ## 集群搭建
-> 我这里使用一台 ```小主机``` 作为 **Server**，三台 ```Raspberry Pi4``` 和一台 ```Jetson Nano``` 作为 **Agent**。
+> 我这里使用一台 ```小主机``` 作为 **Master节点**，三台 ```Raspberry Pi4``` 和一台 ```Jetson Nano``` 作为 **Worker节点**。
 
-### **Server节点**
+### **Master节点**
 ```bash
 # 使用docker容器
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
+curl -fsSL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
 
 # 查看集群信息
 sudo kubectl cluster-info
@@ -63,15 +63,15 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 K100eafa2c79d548460322584a02c4b62708cf16bad0a4b33254b4c37a88e33d29d::server:972070ca134501f3afc130f3182cb213
 ```
 
-### **Agent节点**
+### **Worker节点**
 安装k3s代理。设置```K3S_URL```参数会使K3在Worker模式下运行，k3s代理将在k3s服务器上注册，侦听提供的URL。 用于```K3S_TOKEN```的值存储在服务器节点上的```/var/lib/rancher/k3s/server/node-token```中，参考上面。
 
 ```bash
 # 在Jetson Nano中使用Docker容器
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+curl -fsSL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 
 # 在Raspberry Pi4中使用默认的containerd容器
-curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+curl -fsSL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 
 # 验证k3s代理服务状态
 sudo systemctl status k3s-agent
