@@ -5,6 +5,7 @@
 
 ## 准备工作
 * [关闭交换区](swapoff.md)
+* [Docker](docker.md)
 
 ## 系统软件
 * [K3S](k3s)
