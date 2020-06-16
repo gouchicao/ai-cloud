@@ -17,7 +17,7 @@ sudo rm -rf /var/lib/docker
 ```
 
 ## 非root用户身份使用Docker
-> 将您的用户添加到“ docker”组中
+> 将您的用户添加到“ docker”组中。注：您必须先注销然后重新登录才能生效！
 ```bash
 sudo usermod -aG docker username
 ```
