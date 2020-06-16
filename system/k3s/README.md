@@ -113,24 +113,24 @@ sudo k3s agent --server https://myserver:6443 --token mynodetoken
 ```bash
 sudo kubectl get nodes
 
-NAME    STATUS   ROLES    AGE    VERSION
-aiot    Ready    master   8m4s   v1.18.3+k3s1
-nano1   Ready    <none>   15s    v1.18.3+k3s1
-rpi2    Ready    <none>   27s    v1.18.3+k3s1
-rpi3    Ready    <none>   25s    v1.18.3+k3s1
-rpi1    Ready    <none>   27s    v1.18.3+k3s1
+NAME    STATUS   ROLES    AGE   VERSION
+aiot    Ready    master   86m   v1.18.3+k3s1
+nano1   Ready    <none>   46m   v1.18.3+k3s1
+rpi1    Ready    <none>   36m   v1.18.3+k3s1
+rpi2    Ready    <none>   35m   v1.18.3+k3s1
+rpi3    Ready    <none>   35m   v1.18.3+k3s1
 ```
 
 * 节点详细信息
 ```bash
 sudo kubectl get nodes -o wide
 
-NAME    STATUS   ROLES    AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
-aiot    Ready    master   8m51s   v1.18.3+k3s1   192.168.3.110   <none>        Ubuntu 20.04 LTS                 5.4.0-37-generic   docker://19.3.11
-nano1   Ready    <none>   62s     v1.18.3+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra      docker://19.3.8
-rpi2    Ready    <none>   74s     v1.18.3+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
-rpi3    Ready    <none>   72s     v1.18.3+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
-rpi1    Ready    <none>   74s     v1.18.3+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+NAME    STATUS   ROLES    AGE   VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
+aiot    Ready    master   85m   v1.18.3+k3s1   192.168.3.110   <none>        Ubuntu 18.04.4 LTS               5.3.0-59-generic   docker://19.3.11
+nano1   Ready    <none>   45m   v1.18.3+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra      docker://19.3.8
+rpi1    Ready    <none>   35m   v1.18.3+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+rpi3    Ready    <none>   34m   v1.18.3+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
+rpi2    Ready    <none>   34m   v1.18.3+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
 ```
 
 
@@ -167,13 +167,6 @@ rpi1    Ready    <none>   74s     v1.18.3+k3s1   192.168.3.101   <none>        R
 3. 现在试试在本地计算机的命令行下使用 ```kubectl```
     ```bash
     sudo kubectl get node -o wide
-
-    NAME    STATUS   ROLES    AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
-    aiot    Ready    master   17m     v1.18.3+k3s1   192.168.3.110   <none>        Ubuntu 20.04 LTS                 5.4.0-37-generic   docker://19.3.11
-    rpi1    Ready    <none>   9m33s   v1.18.3+k3s1   192.168.3.101   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
-    rpi2    Ready    <none>   9m33s   v1.18.3+k3s1   192.168.3.102   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
-    rpi3    Ready    <none>   9m31s   v1.18.3+k3s1   192.168.3.103   <none>        Raspbian GNU/Linux 10 (buster)   4.19.97-v7l+       containerd://1.3.3-k3s2
-    nano1   Ready    <none>   9m21s   v1.18.3+k3s1   192.168.3.100   <none>        Ubuntu 18.04.4 LTS               4.9.140-tegra      docker://19.3.8
     ```
 
 4. 不用管理员权限一样操作
