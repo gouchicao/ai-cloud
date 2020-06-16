@@ -28,55 +28,85 @@ curl -fsSL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
 /usr/local/bin/k3s-agent-uninstall.sh
 ```
 
-## 安装Docker
-```bash
-curl -fsSL https://get.docker.com | sh -
-```
-
-## 卸载Docker
-* 删除Docker及其依赖
-```bash
-sudo apt-get remove --auto-remove docker
-```
-
-* 删除所有数据
-```bash
-sudo rm -rf /var/lib/docker
-```
-
 ## 集群搭建
-> 我这里使用一台 ```小主机``` 作为 **Master节点**，三台 ```Raspberry Pi4``` 和一台 ```Jetson Nano``` 作为 **Worker节点**。
+> 我这里使用一台 ```小主机x86``` 作为 **Master节点**，三台 ```Raspberry Pi4``` 和一台 ```Jetson Nano``` 作为 **Worker节点**。
 
 ### **Master节点**
+* 安装K3S，使用docker容器。
 ```bash
-# 使用docker容器
 curl -fsSL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
+```
 
-# 查看集群信息
-sudo kubectl cluster-info
+* 非root用户身份使用kubectl
+```bash
+sudo chmod +r /etc/rancher/k3s/k3s.yaml
+```
+
+* 查看集群信息
+```bash
+kubectl cluster-info
+
 Kubernetes master is running at https://127.0.0.1:6443
 CoreDNS is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 Metrics-server is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
+```
 
-# 查看token
+* 查看集群节点
+```bash
+kubectl get nodes
+
+NAME   STATUS   ROLES    AGE     VERSION
+aiot   Ready    master   7m56s   v1.18.3+k3s1
+```
+
+* 查看集群所有Pod
+```bash
+# kubectl get pod -A
+kubectl get pod --all-namespaces
+
+NAMESPACE     NAME                                     READY   STATUS      RESTARTS   AGE
+kube-system   local-path-provisioner-6d59f47c7-wrnh8   1/1     Running     0          11m
+kube-system   coredns-8655855d6-bkptd                  1/1     Running     0          11m
+kube-system   metrics-server-7566d596c8-vc7k5          1/1     Running     0          11m
+kube-system   helm-install-traefik-49zcd               0/1     Completed   2          11m
+kube-system   svclb-traefik-rdd87                      2/2     Running     0          6m50s
+kube-system   traefik-758cd5fc85-gkwtq                 1/1     Running     0          6m50s
+```
+
+* 查看K3S服务状态
+```bash
+systemctl status k3s
+```
+
+* 查看token
+```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
-K100eafa2c79d548460322584a02c4b62708cf16bad0a4b33254b4c37a88e33d29d::server:972070ca134501f3afc130f3182cb213
+
+K102f428b7b582812772f01ac3486f1dfb4154a49e9f11a64b2dd3c521a92d710f4::server:ebfb5c6906a49e4ab1d9825d2fd95664
 ```
 
 ### **Worker节点**
 安装k3s代理。设置```K3S_URL```参数会使K3在Worker模式下运行，k3s代理将在k3s服务器上注册，侦听提供的URL。 用于```K3S_TOKEN```的值存储在服务器节点上的```/var/lib/rancher/k3s/server/node-token```中，参考上面。
 
+* 在Jetson Nano中使用Docker容器
 ```bash
-# 在Jetson Nano中使用Docker容器
 curl -fsSL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+```
 
-# 在Raspberry Pi4中使用默认的containerd容器
+* 在Raspberry Pi4中使用默认的containerd容器
+```bash
 curl -fsSL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+```
 
-# 验证k3s代理服务状态
+* 验证k3s代理服务状态
+```bash
 sudo systemctl status k3s-agent
 ```
 
+* 如果Master节点的token更改了，可以使用下面的命令来更新Worker节点。
+```bash
+sudo k3s agent --server https://myserver:6443 --token mynodetoken
+```
 
 ## 查看节点信息
 * 节点信息
