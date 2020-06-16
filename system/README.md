@@ -8,7 +8,6 @@
 
 ## 系统软件
 * [K3S](k3s)
-* Kubernetes
 * [OpenFaaS](openfaas)
 
 ## 应用软件
