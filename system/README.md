@@ -3,9 +3,12 @@
 ## 刷系统及初始设置
 * [Flash](flash)
 
+## 准备工作
+* [关闭交换区](swapoff.md)
+
 ## 系统软件
+* [K3S](k3s)
 * Kubernetes
-    * [K3S](k3s)
 * [OpenFaaS](openfaas)
 
 ## 应用软件
