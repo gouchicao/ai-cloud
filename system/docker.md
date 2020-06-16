@@ -15,3 +15,9 @@ sudo apt-get remove --auto-remove docker
 ```bash
 sudo rm -rf /var/lib/docker
 ```
+
+## 非root用户身份使用Docker
+> 将您的用户添加到“ docker”组中
+```bash
+sudo usermod -aG docker username
+```
