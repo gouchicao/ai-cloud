@@ -11,11 +11,11 @@
 | [Jetson Nano B01](https://developer.nvidia.com/embedded/jetson-nano)           | 4G     | 64G        | 5V4A | 自带 | HDMI       | 无   |
 
 ## [系统](system)
-| 主机             | 系统            | 主机名 | 用户  | 密码       |
-| :---            | ----:           | ---:  | ---: | ---:      |
-| 小主机x86        | Ubuntu 18.04.4  | aiot  | wjj  |           |
-| Jetson Nano B01 | Ubuntu 18.04.4  | nano1 | nano | jetson    |
-| Raspberry Pi 4  | Raspbian Buster | rpi1  | pi   | raspberry |
+| 主机             | 系统                 | 主机名 | 用户  | 密码       |
+| :---            | ----:                | ---:  | ---: | ---:      |
+| 小主机x86        | Ubuntu 18.04.4       | aiot  | wjj  |           |
+| Jetson Nano B01 | Ubuntu 18.04.4       | nano1 | nano | jetson    |
+| Raspberry Pi 4  | Raspbian Buster Lite | rpi1  | pi   | raspberry |
 
 ## FAQ
 * [远程执行Shell命令](RemoteExecuteShellCommand.md)
