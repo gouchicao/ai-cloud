@@ -126,3 +126,4 @@ kubernetes-dashboard   NodePort   10.43.33.68   <none>        443:32339/TCP   2d
 * [网页界面 (Dashboard)](https://kubernetes.io/zh/docs/tasks/access-application-cluster/web-ui-dashboard/)
 * [Accessing Dashboard](https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/README.md)
 * [Is accessing kubernetes dashboard remotely possible?](https://www.edureka.co/community/31282/is-accessing-kubernetes-dashboard-remotely-possible)
+* [[Day 16]K3s 叢集搭建](https://ithelp.ithome.com.tw/articles/10223759)
