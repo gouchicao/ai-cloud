@@ -21,6 +21,9 @@
 * [K3S](system/k3s)
 * [用户界面 Dashboard](system/dashboard)
 
+## Cloud
+### [Kubernetes](kubernetes)
+
 ## FAQ
 * [远程执行Shell命令](RemoteExecuteShellCommand.md)
 * [解决 GitHub 图片不显示问题](GitHubImageNotDisplay.md)
