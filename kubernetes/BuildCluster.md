@@ -228,3 +228,4 @@ kube-system   weave-net-jntg6               2/2     Running   4          74m
 * [Creating a single control-plane cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 * [阿里云官方镜像站](https://developer.aliyun.com/mirror/)
 * [Ubuntu:文本编辑器nano快捷键一览](https://www.polarxiong.com/archives/ubuntu-nano-shortcuts.html)
+* [Linux sed命令详解](https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2856901.html)
