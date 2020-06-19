@@ -158,3 +158,8 @@ CONF_SWAPSIZE=0
 ```bash
 sudo reboot
 ```
+
+## 参考资料
+* [How can I check if swap is active from the command line?](https://unix.stackexchange.com/questions/23072/how-can-i-check-if-swap-is-active-from-the-command-line)
+* [Permanently disable swap on Raspbian Buster](https://www.raspberrypi.org/forums/viewtopic.php?t=244130)
+* [Linux sed 命令](https://www.runoob.com/linux/linux-comm-sed.html)

@@ -229,3 +229,5 @@ kube-system   weave-net-jntg6               2/2     Running   4          74m
 * [阿里云官方镜像站](https://developer.aliyun.com/mirror/)
 * [Ubuntu:文本编辑器nano快捷键一览](https://www.polarxiong.com/archives/ubuntu-nano-shortcuts.html)
 * [Linux sed命令详解](https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2856901.html)
+* [修改Docker及kubelet的Cgroup Driver](https://blog.csdn.net/Andriy_dangli/article/details/85062983)
+* [搭建Kubernetes集群踩坑日志之coreDNS 组件出现CrashLoopBackOff问题的解决](https://blog.csdn.net/u011663005/article/details/87937800)
