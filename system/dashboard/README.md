@@ -2,27 +2,33 @@
 
 Dashboard 是基于网页的 Kubernetes 用户界面。您可以使用 Dashboard 将容器应用部署到 Kubernetes 集群中，也可以对容器应用排错，还能管理集群资源。您可以使用 Dashboard 获取运行在集群中的应用的概览信息，也可以创建或者修改 Kubernetes 资源（如 Deployment，Job，DaemonSet 等等）。例如，您可以对 Deployment 实现弹性伸缩、发起滚动升级、重启 Pod 或者使用向导创建新的应用。
 
-![](dashboard.png)
-
 ## 部署 Dashboard
+1. 安装 Kubernetes Dashboard
 ```bash
-sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 ```
 
-## RBAC配置
+过几分钟后您将看到 kubernetes-dashboard 名字空间下会有 Pod 运行。
+```bash
+kubectl get pods -n kubernetes-dashboard
+
+NAME                                         READY   STATUS    RESTARTS   AGE
+dashboard-metrics-scraper-6b4884c9d5-27xf6   1/1     Running   0          4m
+kubernetes-dashboard-7b544877d5-mfmbp        1/1     Running   0          4m
+```
+
+2. 创建 admin-user 用户，绑定 RBAC 角色。
 为了保护您的集群数据，默认情况下，Dashboard 会使用最少的 RBAC 配置进行部署。 当前，Dashboard 仅支持使用 Bearer 令牌登录。 
 
-编辑文件：dashboard.admin-user.yml
 ```bash
+cat <<EOF | kubectl apply -f -
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: admin-user
   namespace: kubernetes-dashboard
-```
-
-编辑文件：dashboard.admin-user-role.yml
-```bash
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -35,34 +41,33 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
+---
+EOF
 ```
 
-创建RBAC
+3. 获得 admin-user 的 Token
 ```bash
-sudo kubectl apply -f dashboard.admin-user.yml -f dashboard.admin-user-role.yml
+kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 ```
 
 ## 访问 Dashboard
-
-获取登录 Dashboard 需要的 Token 信息。
-```bash
-sudo kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
-```
-输入Token信息登录。
-
-![](login-token.png)
-
-### 命令行代理
-这种方式只能在本机访问。
-
-命令行下运行，可以使用参数--port=number来指定端口。
+创建代理服务器连接本地主机和Kubernetes API服务器。(可以使用参数--port=number来指定端口。)
 ```bash
 kubectl proxy
 ```
 
-浏览器输入地址 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 访问。
+### 在创建代理服务器的系统中访问 Dashboard
+在浏览器里输入地址 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 访问。
 
-远程访问Dashboard（在本地创建ssh隧道）
+输入 Token 信息登录。
+
+![](login-token.png)
+
+完成后，我们可以看到 Kubernetes 集群信息。
+
+![](dashboard.png)
+
+### 远程访问Dashboard（在本地创建ssh隧道）
 ```bash
 # -L 8001 本机的端口号，可以是任意。
 ssh -L 8001:127.0.0.1:8001 -N -f -l <username> <kubernetes master hostname or ip> 
@@ -122,8 +127,40 @@ kubernetes-dashboard   NodePort   10.43.33.68   <none>        443:32339/TCP   2d
 ```
 您会看到 Dashboard 暴露出端口 ```32339(HTTPS)```，现在可以在您的浏览器中访问```https://<master-ip>:32339```。如果您是多节点的集群，也可以使用节点IP访问，```https://<node-ip>:<nodePort>```。
 
+## 本地访问 Dashboard
+1. 在本地计算机[安装kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) ，下面是我在macOS下安装的步骤。
+    * 下载最新的版本。
+    ```bash
+    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl"
+    ```
+    * 增加 kubectl 可执行权限。
+    ```bash
+    chmod +x ./kubectl
+    ```
+    * 移动 kubectl 到您的PATH下。
+    ```bash
+    sudo mv kubectl /usr/local/bin/kubectl
+    ```
+    * 验证您安装的版本。
+    ```bash
+    kubectl version --client
+    ```
+
+2. 拷贝master节点的 /etc/kubernetes/admin.conf 文件到本地 ~/.kube/config
+```bash
+scp root@192.168.3.110:/home/wjj/.kube/config .kube/config
+```
+
+3. 在本地创建代理服务器
+```bash
+kubectl proxy
+```
+
+4. 在本地浏览器里输入地址 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 访问。
+
 ## 参考资料
 * [网页界面 (Dashboard)](https://kubernetes.io/zh/docs/tasks/access-application-cluster/web-ui-dashboard/)
 * [Accessing Dashboard](https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/README.md)
 * [Is accessing kubernetes dashboard remotely possible?](https://www.edureka.co/community/31282/is-accessing-kubernetes-dashboard-remotely-possible)
 * [[Day 16]K3s 叢集搭建](https://ithelp.ithome.com.tw/articles/10223759)
+* [(3/8) Install and configure a Kubernetes cluster with k3s to self-host applications](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a)
