@@ -18,11 +18,13 @@
 | Jetson Nano B01 | Ubuntu 18.04.4       | nano1           | nano | jetson    |
 | Raspberry Pi 4  | Raspbian Buster Lite | rpi1/rpi2/rpi3  | pi   | raspberry |
 
-* [K3S](system/k3s)
-* [用户界面 Dashboard](system/dashboard)
+* [K3S](system/k3s/README.md)
+* [用户界面 Dashboard](system/dashboard/README.md)
 
 ## Cloud
 ### [Kubernetes](kubernetes)
+### [用户界面 Dashboard](system/dashboard/README.md)
+### [容器镜像仓库 Harbor](harbor/README.md)
 
 ## FAQ
 * [远程执行Shell命令](RemoteExecuteShellCommand.md)
