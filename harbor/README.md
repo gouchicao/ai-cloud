@@ -1,5 +1,54 @@
 # Harbor
 
+## 安装Harbor
+
+### 安装Docker-Compose
+```bash
+sudo apt install docker-compose
+```
+
+### 下载最新的Harbar Release
+```bash
+wget -c https://github.com/goharbor/harbor/releases/download/v2.1.0-rc1/harbor-offline-installer-v2.1.0-rc1.tgz
+tar -zxvf harbor-offline-installer-v2.1.0-rc1.tgz 
+```
+
+### 修改配置文件
+> 在harbor.yml文件中配置参数 ```hostname```, ```harbor_admin_password```, ```data_volume```，注释掉```https```相关配置项。
+```bash
+cp harbor.yml.tmpl harbor.yml
+nano harbor.yml
+```
+
+### 运行prepare脚本
+```bash
+sudo ./prepare 
+```
+
+### 运行install脚本
+```bash
+sudo ./install.sh 
+```
+
+### 修改Docker配置
+> 因为没有配置HTTPS，所以要修改Docker的配置文件
+```bash
+nano /etc/docker/daemon.json 
+{
+    "insecure-registries":["172.16.33.157"]
+}
+```
+
+### 重启Docker
+```bash
+sudo systemctl reload docker
+```
+
+### 重启Harbor
+```bash
+sudo docker-compose up -d
+```
+
 ## 配置HTTPS访问Harbor
 > 在生产环境中，请始终使用HTTPS，您应该从CA获得证书。 在测试或开发环境中，您可以生成自己的CA。
 
