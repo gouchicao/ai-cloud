@@ -1,4 +1,4 @@
-# Cloud Lab
+# AI Cloud
 ![](logo.jpg)
 
 ## Edge
