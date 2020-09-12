@@ -35,7 +35,7 @@ sudo ./install.sh
 ```bash
 nano /etc/docker/daemon.json 
 {
-    "insecure-registries":["172.16.33.157"]
+    "insecure-registries":["192.168.0.1"]
 }
 ```
 
@@ -223,7 +223,7 @@ sudo docker-compose up -d
 1.　配置DNS
 ```bash
 sudo nano /etc/hosts
-172.16.33.157 gouchicao.com
+192.168.0.1 gouchicao.com
 ```
 
 2. 打开浏览器，输入gouchicao.com
@@ -243,7 +243,7 @@ docker push gouchicao.com/face/face:v1
 1.　配置DNS
 ```bash
 sudo nano /etc/hosts
-172.16.33.157 gouchicao.com
+192.168.0.1 gouchicao.com
 ```
 
 2. 拷贝Harbor服务器上的CA证书
