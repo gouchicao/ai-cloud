@@ -23,8 +23,8 @@
 
 ## Cloud
 ### [Kubernetes](kubernetes)
-### [用户界面 Dashboard](system/dashboard/README.md)
-### [容器镜像仓库 Harbor](harbor/README.md)
+* [用户界面 Dashboard](system/dashboard/README.md)
+* [容器镜像仓库 Harbor](harbor/README.md)
 
 ## FAQ
 * [远程执行Shell命令](RemoteExecuteShellCommand.md)
